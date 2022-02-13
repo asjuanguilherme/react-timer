@@ -31,7 +31,7 @@ export const CircularProgress = styled.div<{percentage: number}>`
     border-radius: 125px;
     padding: 28px;
     box-shadow: inset 2px 3px .7rem rgba(0,0,0,.2);
-
+    
     ${ props => getProgress(props.percentage)};
 ` 
 
