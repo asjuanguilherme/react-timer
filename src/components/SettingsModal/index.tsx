@@ -87,8 +87,6 @@ const SettingsModal = ({opened, close}: Props) => {
                 <S.ThemeColorList>
                     { renderedThemeOptions() }
                 </S.ThemeColorList>
-
-                { targetTime }
             </S.Section>
         </Modal>
     )
