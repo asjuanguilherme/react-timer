@@ -13,7 +13,7 @@ const Home = () => {
             <SettingsModal opened={settingsModalOpened} close={() => setSettingsModalOpened(false)}/>
             <S.Container>
                 <S.Header>
-                    <S.Title> Countdown Timer <S.ClockIcon /></S.Title>
+                    <S.Title> Temporizador <S.ClockIcon /></S.Title>
                 </S.Header>
                 <S.Main>
                     <Timer />

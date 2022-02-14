@@ -24,8 +24,13 @@ export const Wrapper = styled.div<{opened: boolean}>`
     z-index: 100;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     transition: .2s;
+    transition-property: opacity, visibility;
+    
+    @media screen and (min-width: 480px) {
+        align-items: center;
+    }
 
     ${ props => props.opened? openedModal : closedModal }
 `

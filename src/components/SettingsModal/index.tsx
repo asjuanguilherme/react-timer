@@ -36,6 +36,7 @@ const SettingsModal = ({opened, close}: Props) => {
                 <S.ThemeColor
                     color={themes[themeName]}
                     selected={ selectedTheme === themeName }
+                    onClick={ () => alert('click')}
                 />
             )
         })
