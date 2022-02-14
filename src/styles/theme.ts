@@ -1,6 +1,10 @@
-export const selectedTheme = 'green'
+export const selectedTheme = 'blue'
 
-export const themes = {
+type Theme = {
+    [label: string]: string
+}
+
+export const themes : Theme = {
     red: '#D71010',
     orange: '#DE8F18',
     green: '#1DBA65',
