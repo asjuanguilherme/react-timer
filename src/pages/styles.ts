@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { selectedTheme, themes } from '../styles/theme'
 import { FaClock } from 'react-icons/fa'
 
 export const Container = styled.div`
@@ -29,7 +28,7 @@ export const Title = styled.h1`
     text-align: center;
     margin: 0 auto;
     font-family: 'Roboto Condensed', sans-serif;
-    color: ${themes[selectedTheme]};
+    color: ${ props => props.theme.color };
     display: flex;
     align-items: center;
     

@@ -1,12 +1,13 @@
 import Home from './pages/index'
 import GlobalStyle from './styles/globalStyle'
+import ThemeProvider from './contexts/theme'
 
 const App = () => {
   return (
-    <div>
+    <ThemeProvider>
       <GlobalStyle />
       <Home />
-    </div>
+    </ThemeProvider>
   )
 }
 

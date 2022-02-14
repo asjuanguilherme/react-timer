@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components'
-import { selectedTheme, themes } from '../../../styles/theme'
 
-const getProgress = (percentage: number) => {
+const getProgress = (percentage: number, themeColor: string) => {
     const colorBackground = '#f5f5f5'
     const direction = percentage < 51 ? 'right' : 'left'
-    const color = percentage < 51 ? colorBackground : themes[selectedTheme]
+    const color = percentage < 51 ? colorBackground : themeColor
     const deg = 90 + (3.6 * percentage) + 'deg'
 
     return css`
@@ -15,7 +14,7 @@ const getProgress = (percentage: number) => {
                 transparent 50%
             ), linear-gradient(
                 ${deg},
-                ${themes[selectedTheme]} 50%,
+                ${themeColor} 50%,
                 ${colorBackground} 50%
             );
     `
@@ -29,7 +28,7 @@ export const CircularProgress = styled.div<{percentage: number}>`
     padding: 28px;
     box-shadow: inset 2px 3px .7rem rgba(0,0,0,.2);
     
-    ${ props => getProgress(props.percentage)};
+    ${ props => getProgress(props.percentage, props.theme.color)};
 ` 
 
 export const TimeContainer = styled.div`
@@ -48,7 +47,7 @@ export const TimeContainer = styled.div`
 export const TimeRemaining = styled.span`
     font-size: 2rem;
     font-weight: bold;
-    color: ${themes[selectedTheme]};
+    color: ${props => props.theme.color};
     
     @media screen and (min-width: 480px){
         font-size: 2.5rem;

@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Modal from '../Modal'
 import * as S from './styles'
-import { themes, selectedTheme } from '../../styles/theme'
+import { themes  } from '../../styles/theme'
+import { ThemeContext } from '../../contexts/theme'
 
 type Props = {
     opened: boolean;
@@ -9,6 +10,8 @@ type Props = {
 }
 
 const SettingsModal = ({opened, close}: Props) => {
+    const { color, changeTheme } = useContext(ThemeContext)
+
     const [time, setTime] = useState({
         hours: 0,
         minutes: 5,
@@ -16,15 +19,15 @@ const SettingsModal = ({opened, close}: Props) => {
     })
 
     const changeHours = (value: number) => {
-        if(value <= 99)
-        setTime({...time, hours: value})
+        if(value <= 99 && value >= 0)
+            setTime({...time, hours: value})
     }
     const changeMinutes = (value: number) => {
-        if(value < 60)
+        if(value < 60 && value >= 0)
             setTime({...time, minutes: value})
     }
     const changeSeconds = (value: number) => {
-        if(value < 60)
+        if(value < 60 && value >= 0)
             setTime({...time, seconds: value})
     }
 
@@ -35,8 +38,8 @@ const SettingsModal = ({opened, close}: Props) => {
             themeOptionsList.push(
                 <S.ThemeColor
                     color={themes[themeName]}
-                    selected={ selectedTheme === themeName }
-                    onClick={ () => alert('click')}
+                    selected={ color === themes[themeName] }
+                    onClick={ () => changeTheme(themeName)}
                 />
             )
         })

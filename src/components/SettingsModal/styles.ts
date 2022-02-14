@@ -18,6 +18,8 @@ export const TimerInput = styled.div`
         font-size: 1.5rem;
         margin-right: .5rem;
         padding-left: .6rem;
+        font-weight: bold;
+        color: #adadad;
     }
 `
 

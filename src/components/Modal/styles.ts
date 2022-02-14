@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { themes, selectedTheme } from '../../styles/theme'
 import { FaTimes } from 'react-icons/fa'
 
 const closedModal = css`
@@ -55,7 +54,7 @@ export const BoxHeader = styled.div`
     align-items: center;
     background-color: white;
     padding: .75rem 1rem;
-    color: ${themes[selectedTheme]};
+    color: ${props => props.theme.color};
 `
 
 export const Title = styled.h2`

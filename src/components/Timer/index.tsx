@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react'
 import TimerControllers from './TimerControllers'
 import TimerProgress from './TimerProgress'
 
-const Timer = () => {
-    const timeTarget = 300
+type Props = {
+    timeTarget: number;
+}
+
+const Timer = ({timeTarget}: Props) => {
     const [timeRemaining, setTimeRemaining] = useState(timeTarget)
     const [running, setRunning] = useState(false)
 

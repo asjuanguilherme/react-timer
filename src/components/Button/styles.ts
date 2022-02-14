@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { darken } from 'polished'
-import { selectedTheme, themes } from '../../styles/theme'
 
 export const Wrapper = styled.button<{label: string, block: boolean, icon: any}>`
     display: flex;
@@ -19,10 +18,10 @@ export const Wrapper = styled.button<{label: string, block: boolean, icon: any}>
     border-radius: 999px;
 
     color: white;
-    background-color: ${themes[selectedTheme]};
+    background-color: ${props => props.theme.color};
 
     &:hover {
-        background-color: ${darken(0.10, themes[selectedTheme])}
+        background-color: ${props => darken(0.10, props.theme.color)}
     }
 
     ${props => props.label && props.icon? 'svg { margin-left: .7rem; };' : '' }
