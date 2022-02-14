@@ -5,20 +5,20 @@ import { FaPlay, FaPause, FaUndo } from 'react-icons/fa'
 type Props = {
     running: boolean;
     timeRemaining: number;
-    timeTarget: number;
+    targetTime: number;
     play: () => void;
     stop: () => void;
     reset: () => void;
 }
 
-const TimerControllers = ({running, timeRemaining, timeTarget, play, stop, reset}: Props) => {
+const TimerControllers = ({running, timeRemaining, targetTime, play, stop, reset}: Props) => {
     return(
         <S.Controllers>
             { running ?
                 <Button icon={ <FaPause />} onClick={stop} /> :
                 <Button icon={ <FaPlay />} onClick={play} /> 
             }
-            { (running || (timeRemaining < timeTarget)) &&
+            { (running || (timeRemaining < targetTime)) &&
                 <Button icon={ <FaUndo />} onClick={reset} />
             }
         </S.Controllers>

@@ -1,8 +1,10 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Modal from '../Modal'
 import * as S from './styles'
 import { themes  } from '../../styles/theme'
 import { ThemeContext } from '../../contexts/theme'
+import { TimerContext } from '../../contexts/timer'
+import { getTimeString, getTimeSeconds } from '../../helpers/time'
 
 type Props = {
     opened: boolean;
@@ -11,12 +13,21 @@ type Props = {
 
 const SettingsModal = ({opened, close}: Props) => {
     const { color, changeTheme } = useContext(ThemeContext)
+    const { targetTime, changeTargetTime } = useContext(TimerContext)
 
     const [time, setTime] = useState({
-        hours: 0,
-        minutes: 5,
-        seconds: 0,
+        hours: parseInt(getTimeString(targetTime).split(':')[0]),
+        minutes: parseInt(getTimeString(targetTime).split(':')[1]),
+        seconds: parseInt(getTimeString(targetTime).split(':')[2]),
     })
+
+    useEffect(() => {
+        changeTargetTime(getTimeSeconds({
+            hours: time.hours,
+            minutes: time.minutes,
+            seconds: time.seconds
+        }))
+    }, [time])
 
     const changeHours = (value: number) => {
         if(value <= 99 && value >= 0)
@@ -76,6 +87,8 @@ const SettingsModal = ({opened, close}: Props) => {
                 <S.ThemeColorList>
                     { renderedThemeOptions() }
                 </S.ThemeColorList>
+
+                { targetTime }
             </S.Section>
         </Modal>
     )

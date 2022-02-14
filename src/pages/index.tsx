@@ -1,14 +1,12 @@
 import * as S from './styles'
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import Timer from '../components/Timer'
 import Button from '../components/Button'
 import { FaCog } from 'react-icons/fa'
 import SettingsModal from '../components/SettingsModal/index'
-import { ThemeContext } from '../contexts/theme'
 
 const Home = () => {
     const [settingsModalOpened, setSettingsModalOpened] = useState(false)
-    const [timeTarget, setTimeTarget] = useState(300)
 
     return(
         <>
@@ -18,7 +16,7 @@ const Home = () => {
                     <S.Title> Temporizador <S.ClockIcon /></S.Title>
                 </S.Header>
                 <S.Main>
-                    <Timer timeTarget={timeTarget} />
+                    <Timer />
                 </S.Main>
                 <S.Footer>
                     <Button

@@ -1,15 +1,17 @@
 import * as S from './styles'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import TimerControllers from './TimerControllers'
 import TimerProgress from './TimerProgress'
+import { TimerContext } from '../../contexts/timer'
 
-type Props = {
-    timeTarget: number;
-}
-
-const Timer = ({timeTarget}: Props) => {
-    const [timeRemaining, setTimeRemaining] = useState(timeTarget)
+const Timer = () => {
+    const { targetTime } = useContext(TimerContext)
+    const [timeRemaining, setTimeRemaining] = useState(targetTime)
     const [running, setRunning] = useState(false)
+
+    useEffect(() => {
+        setTimeRemaining(targetTime)
+    }, [targetTime])
 
     useEffect(() => {
         const decreaseSecond = setInterval(() => {
@@ -36,14 +38,14 @@ const Timer = ({timeTarget}: Props) => {
 
     const resetTimer = () => {
         setRunning(false)
-        setTimeRemaining(timeTarget)
+        setTimeRemaining(targetTime)
     }
 
     return (
         <S.Wrapper>
             <TimerProgress
                 timeRemaining={timeRemaining}
-                timeTarget={timeTarget}
+                targetTime={targetTime}
             />
             <TimerControllers 
                 running={running}
@@ -51,7 +53,7 @@ const Timer = ({timeTarget}: Props) => {
                 stop={stopTimer}
                 reset={resetTimer}
                 timeRemaining={timeRemaining}
-                timeTarget={timeTarget}
+                targetTime={targetTime}
             />
         </S.Wrapper>
     )
