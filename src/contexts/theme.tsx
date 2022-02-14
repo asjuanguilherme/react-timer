@@ -1,11 +1,19 @@
-import { useState, createContext } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { ThemeProvider as SCThemeProvider } from 'styled-components'
 import { themes } from '../styles/theme'
 
 export const ThemeContext = createContext<any>({})
 
 const ThemeProvider = ({children}: any) => {
-   const [theme, setTheme] = useState({color: themes['red']})
+   if(!localStorage.getItem('THEME_COLOR')) {
+      localStorage.setItem('THEME_COLOR', themes['lightBlue'])
+   }
+
+   const [theme, setTheme] = useState({color: localStorage.getItem('THEME_COLOR') || themes['lightBlue']})
+
+   useEffect(() => {
+      localStorage.setItem('THEME_COLOR', theme.color )
+   }, [theme])
 
    const changeTheme = (themeName: string) => {
        setTheme({ color: themes[themeName] })
