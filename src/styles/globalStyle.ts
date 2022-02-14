@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     
     #root {
         width: 100%;
+        color: #ADADAD;
     }
 `
 
